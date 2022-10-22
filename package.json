@@ -1,18 +1,22 @@
 {
-  "name": "koreanwordoftheday",
+  "name": "liederbuch-support",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "anOatFlake",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.6.0"
+    "discord.js": "^14.6.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
   },
   "devDependencies": {
-    "eslint": "^8.25.0"
+    "@types/node": "^18.11.3",
+    "eslint": "^8.25.0",
+    "prettier": "^2.7.1"
   }
 }
