@@ -1,9 +1,11 @@
 {
   "name": "liederbuch-support",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "src/index.ts",
   "scripts": {
+    "start": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
