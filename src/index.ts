@@ -1,11 +1,10 @@
 import { Client, Interaction } from 'discord.js';
 import { Commands, handleSlashCommand } from './commands';
-import { token } from '../config.json';
 
 console.log('Bot is starting...');
 
 const client = new Client({
-  intents: [],
+  intents: ['Guilds'],
 });
 
 client.on('ready', async () => {
@@ -24,4 +23,4 @@ client.on('interactionCreate', async (interaction: Interaction) => {
   }
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
