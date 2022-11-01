@@ -1,5 +1,8 @@
 import { Client, Interaction } from 'discord.js';
 import { Commands, handleSlashCommand } from './commands';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 console.log('Bot is starting...');
 
