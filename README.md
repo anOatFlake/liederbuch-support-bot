@@ -2,7 +2,7 @@ discord bot that enables channel user to create github issues for the liederbuch
 
 ### TODOS:
 
-- [ ] /bug bugDescription
-- [ ] /newSong linkToChords
-- [ ] /feature new feature suggestion
-- [ ] github api
+- [x] /bug bugDescription
+- [x] /newSong linkToChords
+- [x] /feature new feature suggestion
+- [x] github api
