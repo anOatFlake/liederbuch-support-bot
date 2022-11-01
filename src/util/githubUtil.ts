@@ -3,7 +3,6 @@ import { IssueType } from '../models/issueType';
 
 export async function createIssue(
   issueType: IssueType,
-  userName: string,
   title: string,
   description: string,
   linkToScreenshot?: string
@@ -14,10 +13,10 @@ export async function createIssue(
 
   await octokit.request('POST /repos/{owner}/{repo}/issues', {
     owner: process.env.GITHUB_OWNER!,
-    repo: process.env.GITHUB_REPO!,
+    repo: process.env.GITHUB_LIEDERBUCH_BOT_REPO!,
     title: createBasicTitle(issueType, title),
     body:
-      createBasicDescription(issueType, userName, description) +
+      createBasicDescription(issueType, description) +
       createScreenshot(linkToScreenshot),
     assignees: [process.env.GITHUB_OWNER!],
     labels: [issueType],
@@ -39,7 +38,6 @@ function createBasicTitle(issueType: IssueType, title: string): string {
 
 function createBasicDescription(
   issueType: IssueType,
-  userName: string,
   description: string
 ): string {
   let descriptionString = '';
