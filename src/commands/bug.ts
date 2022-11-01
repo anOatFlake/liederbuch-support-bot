@@ -4,7 +4,9 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOption,
 } from 'discord.js';
+import { createIssue } from '../util/githubUtil';
 import { Command } from '../models/command';
+import { IssueType } from '../models/issueType';
 
 const bugTitle: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.String,
@@ -30,7 +32,15 @@ export const bug: Command = {
   description: 'decribe a new bug in the liederbuch app',
   options: [bugTitle, bugDescription, linkToScreenshot],
   run: async (client: Client, interaction: CommandInteraction) => {
+    //@ts-ignore
+    const title = interaction.options.getString('bug-title');
+    //@ts-ignore
+    const description = interaction.options.getString('bug-description');
+    //@ts-ignore
+    const link = interaction.options.getString('link-to-screenshot');
     const content = 'new bug-issue has been created';
+
+    await createIssue(IssueType.BUG, title, link);
 
     await interaction.followUp({
       ephemeral: true,

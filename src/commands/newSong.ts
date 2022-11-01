@@ -4,8 +4,16 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOption,
 } from 'discord.js';
+import { IssueType } from 'src/models/issueType';
+import { createIssue } from 'src/util/githubUtil';
 import { Command } from '../models/command';
 
+const title: ApplicationCommandOption = {
+  type: ApplicationCommandOptionType.String,
+  name: 'song-title',
+  description: 'songtitle for issue',
+  required: true,
+};
 const link: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.String,
   name: 'link-to-song',
@@ -16,9 +24,16 @@ const link: ApplicationCommandOption = {
 export const newSong: Command = {
   name: 'new-song',
   description: 'Propose a new song via a link',
-  options: [link],
+  options: [title, link],
   run: async (client: Client, interaction: CommandInteraction) => {
     const content = 'new add-song-issue has been created';
+
+    //@ts-ignore
+    const title = interaction.options.getString('song-title');
+    //@ts-ignore
+    const link = interaction.options.getString('link-to-song');
+
+    await createIssue(IssueType.NEW_SONG, title, link);
 
     await interaction.followUp({
       ephemeral: true,
