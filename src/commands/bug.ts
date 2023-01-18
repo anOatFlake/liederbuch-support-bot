@@ -17,7 +17,7 @@ const bugTitle: ApplicationCommandOption = {
 const bugDescription: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.String,
   name: 'bug-description',
-  description: 'describe here the feature that you want to be included',
+  description: 'describe here the bug that you encountered',
   required: true,
 };
 const linkToScreenshot: ApplicationCommandOption = {
@@ -40,7 +40,7 @@ export const bug: Command = {
     const link = interaction.options.getString('link-to-screenshot');
     const content = 'new bug-issue has been created';
 
-    await createIssue(IssueType.BUG, title, link);
+    await createIssue(IssueType.BUG, title, description, link);
 
     await interaction.followUp({
       ephemeral: true,
