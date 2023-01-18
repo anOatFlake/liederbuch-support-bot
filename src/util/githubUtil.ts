@@ -1,6 +1,13 @@
 import { Octokit } from '@octokit/core';
 import { IssueType } from '../models/issueType';
 
+/**
+ * creates the discord issue depending on the inputs and env vars
+ * @param issueType IssueType
+ * @param title string
+ * @param description string
+ * @param linkToScreenshot string | undefined
+ */
 export async function createIssue(
   issueType: IssueType,
   title: string,
@@ -23,6 +30,12 @@ export async function createIssue(
   });
 }
 
+/**
+ * creates the title string
+ * @param issueType IssueType
+ * @param title string
+ * @returns string
+ */
 function createBasicTitle(issueType: IssueType, title: string): string {
   switch (issueType) {
     case IssueType.BUG:
@@ -36,6 +49,12 @@ function createBasicTitle(issueType: IssueType, title: string): string {
   }
 }
 
+/**
+ * creates the description string
+ * @param issueType IssueType
+ * @param description string
+ * @returns string
+ */
 function createBasicDescription(
   issueType: IssueType,
   description: string
@@ -57,7 +76,12 @@ function createBasicDescription(
   return descriptionString;
 }
 
-function createScreenshot(linkToScreenshot?: string): string {
+/**
+ * creates the screenshot link
+ * @param linkToScreenshot string | undefined
+ * @returns string
+ */
+function createScreenshot(linkToScreenshot: string | undefined): string {
   let screenshotDescription = '### Screenshot:';
   if (linkToScreenshot) {
     screenshotDescription += '![link to screenshot](' + linkToScreenshot + ')';
