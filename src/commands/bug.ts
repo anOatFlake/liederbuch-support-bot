@@ -4,7 +4,7 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOption,
 } from 'discord.js';
-import { createIssue } from '../util/githubUtil';
+import { createIssue } from '../util/githubUtils';
 import { Command } from '../models/command';
 import { IssueType } from '../models/issueType';
 

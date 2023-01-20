@@ -5,7 +5,7 @@ import {
   ApplicationCommandOption,
 } from 'discord.js';
 import { IssueType } from 'src/models/issueType';
-import { createIssue } from 'src/util/githubUtil';
+import { createIssue } from 'src/util/githubUtils';
 import { Command } from '../models/command';
 
 const title: ApplicationCommandOption = {
