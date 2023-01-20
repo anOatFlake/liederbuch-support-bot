@@ -3,8 +3,18 @@ import { Client, CommandInteraction } from 'discord.js';
 import { bug } from './commands/bug';
 import { feature } from './commands/feature';
 import { newSong } from './commands/newSong';
+import { allIssues } from './commands/allIssues';
+import { updateIssue } from './commands/updateIssue';
+import { layoutBug } from './commands/layoutBug';
 
-export const Commands: Command[] = [bug, feature, newSong];
+export const Commands: Command[] = [
+  bug,
+  feature,
+  newSong,
+  layoutBug,
+  allIssues,
+  updateIssue,
+];
 
 export const handleSlashCommand = async (
   client: Client,
