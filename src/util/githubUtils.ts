@@ -1,10 +1,11 @@
 import { Octokit } from '@octokit/core';
-import { IssueType } from '../models/issueType';
+import { IssueLabel } from '../models/issueLabel';
 import {
   createBasicDescription,
   createBasicTitle,
   createScreenshot,
 } from './stringUtils';
+import { FilteredIssueData, IssueSchema } from 'src/models/issueSchema';
 
 /**
  * creates the discord issue depending on the inputs and env vars
@@ -14,7 +15,7 @@ import {
  * @param linkToScreenshot string | undefined
  */
 export async function createIssue(
-  issueType: IssueType,
+  issueType: IssueLabel,
   title: string,
   description: string,
   linkToScreenshot?: string
@@ -43,12 +44,15 @@ export async function getIssues() {
     auth: process.env.GITHUB_LIEDERBUCH_BOT_TOKEN,
   });
 
-  const response = await octokit.request(
-    'GET /repos/{owner}/{repo}/issues{?milestone,state,assignee,creator,mentioned,labels,sort,direction,since,per_page,page}',
-    {
-      owner: process.env.GITHUB_OWNER!,
-      repo: process.env.GITHUB_LIEDERBUCH_BOT_REPO!,
-    }
-  );
-  //return JSON.parse(response);
+  const response = await octokit.request('GET /repos/{owner}/{repo}/issues', {
+    owner: process.env.GITHUB_OWNER!,
+    repo: process.env.GITHUB_LIEDERBUCH_BOT_REPO!,
+  });
+
+  let issues: FilteredIssueData[] = [];
+  response.data.forEach((issueResponse) => {
+    issues.push(IssueSchema.parse(issueResponse));
+  });
+
+  return issues;
 }
