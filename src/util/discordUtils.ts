@@ -6,7 +6,9 @@ import { FilteredIssueData } from 'src/models/issueSchema';
  * @param data FilteredIssueData[]
  * @returns APIEmbedField[]
  */
-export function createIssueListEmbedFields(data: FilteredIssueData[]): APIEmbedField[] {     
+export function createIssueListEmbedFields(
+  data: FilteredIssueData[]
+): APIEmbedField[] {
   let embedFields: APIEmbedField[] = [];
   data.forEach((issue) => {
     const embedLine: APIEmbedField = {
