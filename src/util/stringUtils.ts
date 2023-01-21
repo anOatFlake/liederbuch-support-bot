@@ -1,4 +1,4 @@
-import { IssueType } from 'src/models/issueType';
+import { IssueLabel } from 'src/models/issueLabel';
 
 /**
  * creates the title string
@@ -6,15 +6,15 @@ import { IssueType } from 'src/models/issueType';
  * @param title string
  * @returns string
  */
-export function createBasicTitle(issueType: IssueType, title: string): string {
+export function createBasicTitle(issueType: IssueLabel, title: string): string {
   switch (issueType) {
-    case IssueType.BUG:
+    case IssueLabel.BUG:
       return 'bug: ' + title;
-    case IssueType.FEATURE:
+    case IssueLabel.FEATURE:
       return 'feat: ' + title;
-    case IssueType.NEW_SONG:
+    case IssueLabel.NEW_SONG:
       return 'new song:' + title;
-    case IssueType.LAYOUT_BUG:
+    case IssueLabel.LAYOUT_BUG:
       return 'layout: ' + title;
     default:
       return title;
@@ -28,20 +28,20 @@ export function createBasicTitle(issueType: IssueType, title: string): string {
  * @returns string
  */
 export function createBasicDescription(
-  issueType: IssueType,
+  issueType: IssueLabel,
   description?: string
 ): string {
   if (description) {
     let descriptionString = '';
     switch (issueType) {
-      case IssueType.BUG:
-      case IssueType.LAYOUT_BUG:
+      case IssueLabel.BUG:
+      case IssueLabel.LAYOUT_BUG:
         description += '### Bugreport: \n' + description;
         break;
-      case IssueType.FEATURE:
+      case IssueLabel.FEATURE:
         description += '### Feature description: \n' + description;
         break;
-      case IssueType.NEW_SONG:
+      case IssueLabel.NEW_SONG:
         description += '### Link to chords: \n[' + description + '](url)';
         break;
       default:

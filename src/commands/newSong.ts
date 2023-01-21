@@ -4,7 +4,7 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOption,
 } from 'discord.js';
-import { IssueType } from 'src/models/issueType';
+import { IssueLabel } from 'src/models/issueLabel';
 import { createIssue } from 'src/util/githubUtils';
 import { Command } from '../models/command';
 
@@ -33,7 +33,7 @@ export const newSong: Command = {
     //@ts-ignore
     const link = interaction.options.getString('link-to-song');
 
-    await createIssue(IssueType.NEW_SONG, title, link);
+    await createIssue(IssueLabel.NEW_SONG, title, link);
 
     await interaction.followUp({
       ephemeral: true,

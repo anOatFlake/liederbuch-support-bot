@@ -6,7 +6,7 @@ import {
 } from 'discord.js';
 import { createIssue } from '../util/githubUtils';
 import { Command } from '../models/command';
-import { IssueType } from '../models/issueType';
+import { IssueLabel } from '../models/issueLabel';
 
 const songName: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.String,
@@ -40,7 +40,7 @@ export const layoutBug: Command = {
     const link = interaction.options.getString('link-to-screenshot');
     const content = 'new bug-issue has been created';
 
-    await createIssue(IssueType.LAYOUT_BUG, title, description, link);
+    await createIssue(IssueLabel.LAYOUT_BUG, title, description, link);
 
     await interaction.followUp({
       ephemeral: true,

@@ -4,7 +4,7 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOption,
 } from 'discord.js';
-import { IssueType } from 'src/models/issueType';
+import { IssueLabel } from 'src/models/issueLabel';
 import { createIssue } from 'src/util/githubUtils';
 import { Command } from '../models/command';
 
@@ -33,7 +33,7 @@ export const feature: Command = {
     //@ts-ignore
     const description = interaction.options.getString('feature-description');
 
-    await createIssue(IssueType.FEATURE, title, description);
+    await createIssue(IssueLabel.FEATURE, title, description);
 
     await interaction.followUp({
       ephemeral: true,
