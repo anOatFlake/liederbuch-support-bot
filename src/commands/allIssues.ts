@@ -1,8 +1,8 @@
 import { APIEmbedField, Client, CommandInteraction } from 'discord.js';
-import { issueListEmbed } from 'src/components/issueListEmbed';
-import { Command } from 'src/models/command';
-import { createIssueListEmbedFields } from 'src/util/discordUtils';
-import { getIssues } from 'src/util/githubUtils';
+import { issueListEmbed } from '../components/issueListEmbed';
+import { Command } from '../models/command';
+import { createIssueListEmbedFields } from '../util/discordUtils';
+import { getIssues } from '../util/githubUtils';
 
 export const allIssues: Command = {
   name: 'all-issues',

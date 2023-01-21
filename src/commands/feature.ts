@@ -4,8 +4,8 @@ import {
   ApplicationCommandOptionType,
   ApplicationCommandOption,
 } from 'discord.js';
-import { IssueLabel } from 'src/models/issueLabel';
-import { createIssue } from 'src/util/githubUtils';
+import { IssueLabel } from '../models/issueLabel';
+import { createIssue } from '../util/githubUtils';
 import { Command } from '../models/command';
 
 const featureTitle: ApplicationCommandOption = {

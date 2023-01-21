@@ -12,8 +12,8 @@ export function createIssueListEmbedFields(
   let embedFields: APIEmbedField[] = [];
   data.forEach((issue) => {
     const embedLine: APIEmbedField = {
-      name: '[Issue: ' + issue.id + '](' + issue.html_url + ')',
-      value: issue.title,
+      name: issue.title,
+      value: '[Issue ID: ' + issue.id + '](' + issue.html_url + ')',
     };
     embedFields.push(embedLine);
   });

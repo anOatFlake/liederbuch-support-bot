@@ -28,7 +28,7 @@ const linkToScreenshot: ApplicationCommandOption = {
 };
 
 export const layoutBug: Command = {
-  name: 'bug',
+  name: 'layout-bug',
   description: 'decribe a new bug in the liederbuch app',
   options: [songName, bugDescription, linkToScreenshot],
   run: async (client: Client, interaction: CommandInteraction) => {

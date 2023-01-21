@@ -5,7 +5,7 @@ import {
   createBasicTitle,
   createScreenshot,
 } from './stringUtils';
-import { FilteredIssueData, IssueSchema } from 'src/models/issueSchema';
+import { FilteredIssueData, IssueSchema } from '../models/issueSchema';
 
 /**
  * creates the discord issue depending on the inputs and env vars
@@ -21,12 +21,12 @@ export async function createIssue(
   linkToScreenshot?: string
 ) {
   const octokit = new Octokit({
-    auth: process.env.GITHUB_LIEDERBUCH_BOT_TOKEN,
+    auth: process.env.GITHUB_LIEDERBUCH_TOKEN,
   });
 
   await octokit.request('POST /repos/{owner}/{repo}/issues', {
     owner: process.env.GITHUB_OWNER!,
-    repo: process.env.GITHUB_LIEDERBUCH_BOT_REPO!,
+    repo: process.env.GITHUB_LIEDERBUCH_REPO!,
     title: createBasicTitle(issueType, title),
     body:
       createBasicDescription(issueType, description) +
@@ -41,12 +41,12 @@ export async function createIssue(
  */
 export async function getIssues() {
   const octokit = new Octokit({
-    auth: process.env.GITHUB_LIEDERBUCH_BOT_TOKEN,
+    auth: process.env.GITHUB_LIEDERBUCH_TOKEN,
   });
 
   const response = await octokit.request('GET /repos/{owner}/{repo}/issues', {
     owner: process.env.GITHUB_OWNER!,
-    repo: process.env.GITHUB_LIEDERBUCH_BOT_REPO!,
+    repo: process.env.GITHUB_LIEDERBUCH_REPO!,
   });
 
   let issues: FilteredIssueData[] = [];

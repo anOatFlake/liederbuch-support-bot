@@ -4,7 +4,7 @@ import {
   Client,
   CommandInteraction,
 } from 'discord.js';
-import { Command } from 'src/models/command';
+import { Command } from '../models/command';
 
 const issueId: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.String,
@@ -23,7 +23,7 @@ const additionalInformation: ApplicationCommandOption = {
 const additionalScreeenshotLink: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.String,
   name: 'additional-link-to-screenshot',
-  description: '',
+  description: 'optional link to a screenshot',
   required: false,
 };
 
