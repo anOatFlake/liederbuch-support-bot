@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
 /**
- * type of IssueSchema
+ * types for the defined schemas
  */
 export type FilteredIssueData = z.infer<typeof IssueSchema>;
+export type CommentData = z.infer<typeof CommentSchema>;
 
 /**
  * To filter the github rest result
@@ -14,4 +15,9 @@ export const IssueSchema = z.object({
   title: z.string(),
   body: z.string().optional(),
   html_url: z.string(),
+});
+
+export const CommentSchema = z.object({
+  body: z.string(),
+  created_at: z.coerce.date(),
 });
