@@ -5,7 +5,12 @@ import {
   createBasicTitle,
   createScreenshot,
 } from './stringUtils';
-import { FilteredIssueData, IssueSchema } from '../models/issueSchema';
+import {
+  CommentData,
+  CommentSchema,
+  FilteredIssueData,
+  IssueSchema,
+} from '../models/issueSchema';
 
 /**
  * creates the discord issue depending on the inputs and env vars
@@ -37,7 +42,8 @@ export async function createIssue(
 }
 
 /**
- * fetches the discord issue list from repo
+ * fetches the github issue list from repo
+ * @returns FilteredIssueData[]
  */
 export async function getIssues() {
   const octokit = new Octokit({
@@ -55,4 +61,53 @@ export async function getIssues() {
   });
 
   return issues;
+}
+
+/**
+ * fetches the issue with the selected issue number from the repo
+ * @param number number
+ * @returns FilteredIssueSchema
+ */
+export async function getIssue(number: number) {
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_LIEDERBUCH_TOKEN,
+  });
+
+  const response = await octokit.request(
+    'GET /repos/{owner}/{repo}/issues/{issue_number}',
+    {
+      owner: process.env.GITHUB_OWNER!,
+      repo: process.env.GITHUB_LIEDERBUCH_REPO!,
+      issue_number: number,
+    }
+  );
+
+  return IssueSchema.parse(response);
+}
+
+/**
+ * the comments from one issue
+ * @param number number
+ * @returns CommentData[]
+ */
+export async function getComments(number: number) {
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_LIEDERBUCH_TOKEN,
+  });
+
+  const response = await octokit.request(
+    'GET /repos/{owner}/{repo}/issues/{issue_number}/comments',
+    {
+      owner: process.env.GITHUB_OWNER!,
+      repo: process.env.GITHUB_LIEDERBUCH_REPO!,
+      issue_number: number,
+    }
+  );
+
+  let comments: CommentData[] = [];
+  response.data.forEach((commentResponse) => {
+    comments.push(CommentSchema.parse(commentResponse));
+  });
+
+  return comments;
 }
