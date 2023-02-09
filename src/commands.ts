@@ -6,6 +6,7 @@ import { newSong } from './commands/newSong';
 import { allIssues } from './commands/allIssues';
 import { updateIssue } from './commands/updateIssue';
 import { layoutBug } from './commands/layoutBug';
+import { issueDetails } from './commands/getIssue';
 
 export const Commands: Command[] = [
   bug,
@@ -13,6 +14,7 @@ export const Commands: Command[] = [
   newSong,
   layoutBug,
   allIssues,
+  issueDetails,
   updateIssue,
 ];
 
