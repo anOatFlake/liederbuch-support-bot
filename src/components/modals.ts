@@ -28,3 +28,7 @@ export let featureModal = new ModalBuilder()
 export let newSongModal = new ModalBuilder()
   .setTitle('Liedvorschlag')
   .addComponents();
+
+export let updateIssueModal = new ModalBuilder()
+  .setTitle('Issue Update')
+  .addComponents();
