@@ -32,7 +32,7 @@ export const updateIssue: Command = {
   description: 'updates an issue with additional information',
   options: [issueId, additionalInformation, additionalScreeenshotLink],
   run: async (client: Client, interaction: CommandInteraction) => {
-    //TODO
+    //TODO embed
     const content = 'Issue has been updated';
 
     await interaction.followUp({
