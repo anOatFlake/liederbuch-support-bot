@@ -13,7 +13,7 @@ export function createIssueListEmbedFields(
   data.forEach((issue) => {
     const embedLine: APIEmbedField = {
       name: issue.title,
-      value: '[Issue ID: ' + issue.id + '](' + issue.html_url + ')',
+      value: '[Issue Number: ' + issue.number + '](' + issue.html_url + ')',
     };
     embedFields.push(embedLine);
   });
