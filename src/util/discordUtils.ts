@@ -1,5 +1,5 @@
 import { APIEmbedField } from 'discord.js';
-import { FilteredIssueData } from 'src/models/issueSchema';
+import { CommentData, FilteredIssueData } from 'src/models/issueSchema';
 
 /**
  * creates all the embed descriptions for filteredIssueData
@@ -14,6 +14,23 @@ export function createIssueListEmbedFields(
     const embedLine: APIEmbedField = {
       name: issue.title,
       value: '[Issue Number: ' + issue.number + '](' + issue.html_url + ')',
+    };
+    embedFields.push(embedLine);
+  });
+  return embedFields;
+}
+
+/**
+ * creates all the embed descriptions for commentData
+ * @param data CommentData[]
+ * @returns APIEmbedField[]
+ */
+export function createCommentEmbedFields(data: CommentData[]): APIEmbedField[] {
+  let embedFields: APIEmbedField[] = [];
+  data.forEach((comment) => {
+    const embedLine: APIEmbedField = {
+      name: comment.created_at.toLocaleString(),
+      value: comment.body,
     };
     embedFields.push(embedLine);
   });

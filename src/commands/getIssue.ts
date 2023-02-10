@@ -4,9 +4,10 @@ import {
   ApplicationCommandOption,
   ApplicationCommandOptionType,
 } from 'discord.js';
-import { issueEmbed } from '../components/issueEmbed';
+import { basicEmbed } from '../components/basicEmbed';
 import { Command } from '../models/command';
-import { getIssue } from '../util/githubUtils';
+import { getComments, getIssue } from '../util/githubUtils';
+import { createCommentEmbedFields } from '../util/discordUtils';
 
 const issueNumber: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.Integer,
@@ -22,10 +23,20 @@ export const issueDetails: Command = {
   run: async (client: Client, interaction: CommandInteraction) => {
     //@ts-ignore
     const num = interaction.options.getInteger('issue-number');
-    const issueData = await getIssue(parseInt(num)); //todo
+
+    const issueData = await getIssue(num);
+    const commentData = await getComments(num);
+
+    const embedFields = createCommentEmbedFields(commentData);
 
     await interaction.followUp({
-      embeds: [],
+      embeds: [
+        basicEmbed
+          .setTitle(issueData.title)
+          .setURL(issueData.html_url)
+          .setDescription(issueData.body ?? '')
+          .setFields(embedFields),
+      ],
       ephemeral: true,
     });
   },

@@ -19,7 +19,7 @@ export const allIssues: Command = {
     }
 
     await interaction.followUp({
-      embeds: [issueListEmbed.addFields(embedFields)],
+      embeds: [issueListEmbed.setFields(embedFields)],
       ephemeral: true,
     });
   },
