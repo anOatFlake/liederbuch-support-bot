@@ -68,7 +68,7 @@ export async function getIssues() {
  * @param number number
  * @returns FilteredIssueSchema
  */
-export async function getIssue(number: number) {
+export async function getIssue(num: number) {
   const octokit = new Octokit({
     auth: process.env.GITHUB_LIEDERBUCH_TOKEN,
   });
@@ -78,7 +78,7 @@ export async function getIssue(number: number) {
     {
       owner: process.env.GITHUB_OWNER!,
       repo: process.env.GITHUB_LIEDERBUCH_REPO!,
-      issue_number: number,
+      issue_number: num,
     }
   );
 

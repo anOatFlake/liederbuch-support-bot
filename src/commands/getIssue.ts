@@ -4,9 +4,9 @@ import {
   ApplicationCommandOption,
   ApplicationCommandOptionType,
 } from 'discord.js';
-import { issueEmbed } from 'src/components/issueEmbed';
-import { Command } from 'src/models/command';
-import { getIssue } from 'src/util/githubUtils';
+import { issueEmbed } from '../components/issueEmbed';
+import { Command } from '../models/command';
+import { getIssue } from '../util/githubUtils';
 
 const issueNumber: ApplicationCommandOption = {
   type: ApplicationCommandOptionType.Integer,
@@ -21,8 +21,8 @@ export const issueDetails: Command = {
   options: [issueNumber],
   run: async (client: Client, interaction: CommandInteraction) => {
     //@ts-ignore
-    const num: number = interaction.options.getString('issue-number');
-    //const issueData = await getIssue(num);
+    const num = interaction.options.getInteger('issue-number');
+    const issueData = await getIssue(parseInt(num)); //todo
 
     await interaction.followUp({
       embeds: [],
