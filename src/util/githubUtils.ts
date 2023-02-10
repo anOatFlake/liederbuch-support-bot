@@ -82,7 +82,7 @@ export async function getIssue(num: number) {
     }
   );
 
-  return IssueSchema.parse(response);
+  return IssueSchema.parse(response.data);
 }
 
 /**
